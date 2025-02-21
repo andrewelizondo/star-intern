@@ -77,6 +77,3 @@ Ensure the following environment variables are set.
 1. change directory to the Vulnerable_infra directory
 2. execute terraform plan -out tfplan
 3. execute terraform apply tfplan
-
-Note: 'terraform apply' will take approximately 30 minutes due to deploying the RAG LLM instance.
-The language model download and document processing will take the most time.
