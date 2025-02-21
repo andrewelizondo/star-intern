@@ -3,5 +3,6 @@ package models
 import "mime/multipart"
 
 type Request struct {
-	File *multipart.FileHeader `form:"file" binding:"required"`
+	Instruct string                `form:"instruct" binding:"omitempty"`
+	File     *multipart.FileHeader `form:"file" binding:"omitempty"`
 }

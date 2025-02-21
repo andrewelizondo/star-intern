@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backenddeployment
+  namespace: backend-namespace  # Ensure this namespace exists
+  labels:
+    test: backenddeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      test: backend
+  template:
+    metadata:
+      labels:
+        test: backend
+    spec:
+      serviceAccountName: bedrock-service-account  # Ensure this SA exists
+      imagePullSecrets:
+        - name: ecr-auth
+      containers:
+        - name: backend
+          image: 008971668134.dkr.ecr.us-east-1.amazonaws.com/backend_docker_image:latest  # Replace with actual image URL
+          env:
+            - name: AGENT_ID
+              value: "MHBZATAUUQ"  # Replace with actual value
+            - name: AGENT_ALIAS_ID
+              value: "X4SCWTXXKW"  # Replace with actual value
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "250m"
+              memory: "50Mi"
