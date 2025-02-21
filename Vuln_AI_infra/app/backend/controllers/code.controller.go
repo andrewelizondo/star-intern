@@ -23,7 +23,7 @@ func (s CodeController) Submit(context *gin.Context) {
 	}
 	resp, err := s.codeService.ProcessCode(&req)
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Error processing code. " + err.Error(), "error": err})
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Error processing code. " + err.Error(), "error": err.Error()})
 		context.Abort()
 		return
 	}
