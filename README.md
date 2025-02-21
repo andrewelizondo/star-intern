@@ -4,7 +4,7 @@
 This scenario deploys a vulnerable agent-based application that has the ability to interpret and execute code.
 The application is built using golang and utilizes Amazon Bedrock and a code interpreter Bedrock Agent to response to requests.
 
-![Architecture](https://raw.githubusercontent.com/jefferyfry/star-intern/refs/heads/main/images/arch.png)
+![Architecture](https://raw.githubusercontent.com/jefferyfry/star-intern/refs/heads/jfry-bedrock-agent-terraform-n-app/images/arch.png)
 
 ### Prerequisites
 
