@@ -37,6 +37,10 @@ func (c CodeServiceImpl) ProcessCode(req *models.Request) (*models.Response, err
 		instructText.WriteString(req.Instruct)
 		instructText.WriteString("\n")
 	}
+	if req.InstructJson != "" {
+		instructText.WriteString(req.InstructJson)
+		instructText.WriteString("\n")
+	}
 	if req.File != nil {
 		fileText, err := getStringFromFileHeader(req.File)
 		if err != nil {

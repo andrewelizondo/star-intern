@@ -68,6 +68,14 @@ output "agent_id" {
   value = module.bedrock_agent_code.agent_id
 }
 
+output "agent_action_group_id" {
+  value = module.bedrock_agent_code.agent_action_group_id
+}
+
+output "agent_action_group_name" {
+  value = module.bedrock_agent_code.agent_action_group_name
+}
+
 output "app_url" {
-  value = "Send POST to http://${module.k8s_deployment.ingress_hostname}/api/code"
+  value = "Send POST to http://${module.k8s_deployment.ingress_hostname}/api/codeassist/request"
 }

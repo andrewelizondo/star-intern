@@ -1,0 +1,7 @@
+2025-04-28T00:29:47.065Z [ERROR]: An unexpected error occurred during red team run: Validation failed for plugin indirect-prompt-injection: Error: Invariant failed: Indirect prompt injection plugin requires `config.indirectInjectionVar` to be set
+Error: Validation failed for plugin indirect-prompt-injection: Error: Invariant failed: Indirect prompt injection plugin requires `config.indirectInjectionVar` to be set
+    at synthesize (/Users/jeff.fry/.npm/_npx/81bbc6515d992ace/node_modules/promptfoo/dist/src/redteam/index.js:410:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async doGenerateRedteam (/Users/jeff.fry/.npm/_npx/81bbc6515d992ace/node_modules/promptfoo/dist/src/redteam/commands/generate.js:194:88)
+    at async doRedteamRun (/Users/jeff.fry/.npm/_npx/81bbc6515d992ace/node_modules/promptfoo/dist/src/redteam/shared.js:99:27)
+    at async Command.<anonymous> (/Users/jeff.fry/.npm/_npx/81bbc6515d992ace/node_modules/promptfoo/dist/src/redteam/commands/run.js:90:13)

@@ -14,7 +14,7 @@ func NewCodeRoutes(codeController controllers.CodeController) CodeRoutes {
 }
 
 func (rc *CodeRoutes) CodeRoute(rg *gin.RouterGroup) {
-	routerCodes := rg.Group("/code")
+	routerCodes := rg.Group("/codeassist")
 
-	routerCodes.POST("/", rc.codeController.Submit)
+	routerCodes.POST("/request", rc.codeController.Submit)
 }
