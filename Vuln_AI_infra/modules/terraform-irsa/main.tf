@@ -44,6 +44,15 @@ resource "aws_iam_role_policy" "eks-irsa-policy" {
         "s3:GetObject"
       ],
       Resource = "*"
+    },
+    {
+      Effect = "Allow",
+      Action = [
+        "bedrock:InvokeAgent",
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+      ],
+      Resource = "*"
     }]
   })
 }

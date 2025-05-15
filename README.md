@@ -34,7 +34,11 @@ Ensure the following environment variables are set.
 
 Note: 
 * 'terraform apply' will take approximately 15 minutes to deploy the infrastructure
-* Prior to executing 'terraform destroy', you must delete the Bedrock Agent Action group in the console.
+* Prior to executing 'terraform destroy', you must delete the Bedrock Agent Action group in the console or via AWS CLI command:
+
+```
+aws bedrock-agent delete-agent-action-group --action-group-id <action-group-id> --agent-id <agent-id> --agent-version DRAFT --skip-resource-in-use-check
+```
 
 ### Testing the Vulnerable Bedrock Agent-based Application
 
@@ -43,37 +47,55 @@ Note:
 You can send a python file to the agent-based application using curl. Get the app url/server from the terraform output.
 
 ```
-curl --location 'http://<server>/api/code' \
+curl --location 'http://<server>/api/codeassist/request' \
 --form 'instruct="<some instructional text>"' \
 --form 'file=@"<code file located in the current directory>"'
 ```
 
-Example:
+Example (form with file):
 ```
-curl --location 'http://localhost:8080/api/code' \
+curl --location 'http://localhost:8080/api/codeassist/request' \
 --form 'instruct="Execute this code"' \
 --form 'file=@"test_code.py"'
 ```
 
-#### Frontend React
+Example (json with instruction only):
+```
+curl -v -X POST 'http://localhost:8080/api/codeassist/request' \
+-H 'Content-Type: application/json' \
+-d '{
+    "instruct_json": "Execute this code print(\"Hello World\")"
+}'
+```
 
-Coming soon...
 
-### Deploying the Attack Infrastructure
+## Red Team Attacks
 
-Coming soon...
+### Prompt Injection Attacks with Promptfoo
 
-#### Environment Variables
-Ensure the following environment variables are set.
+1. Install Promptfoo. See [here.](https://www.promptfoo.dev/docs/red-team/quickstart/#initialize-the-project)
+2. Change directory to the promptfoo directory.
+3. Update the 'url' in promptfooconfig.yaml to use your application endpoint.
+4. Run the following command to execute the attack:
 
-| Environment Variable           | Description                                                                              |
-|--------------------------------|------------------------------------------------------------------------------------------|
-| AWS_ACCESS_KEY_ID              | Your AWS credentials for terraform deployment only. eg. AKIAQEFWAZ...                    |
-| AWS_SECRET_ACCESS_KEY          | Your AWS credentials for terraform deployment only. eg. vjrQ/g/...                       |
-| AWS_DEFAULT_REGION             | Your AWS region for terraform deployment only. eg. us-east-2                             |
+npm/brew
+```
+promptfoo redteam run
+```
 
-#### Terraform
+npx
+```
+npx promptfoo@latest redteam run
+```
 
-1. change directory to the Vulnerable_infra directory
-2. execute terraform plan -out tfplan
-3. execute terraform apply tfplan
+5. Run the following command to see the results:
+
+npm/brew
+```
+promptfoo view
+```
+
+npx
+```
+npx promptfoo@latest view
+```
